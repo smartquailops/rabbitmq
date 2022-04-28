@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rabbitmqcluster-server-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "rabbitmq.dev.smartquail.io"
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: rabbitmq
+              port:
+                number: 15672
